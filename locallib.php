@@ -32,7 +32,6 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class assign_feedback_externalserver extends assign_feedback_plugin {
-
     /**
      * Get the name of the submission plugin
      * @return string
@@ -111,7 +110,7 @@ class assign_feedback_externalserver extends assign_feedback_plugin {
         $cmid = $this->assignment->get_course_module()->id;
         $url = new moodle_url('/mod/assign/view.php', [
             'id' => $cmid,
-            'action' => 'grading'
+            'action' => 'grading',
         ]);
         redirect($url);
     }
@@ -126,5 +125,4 @@ class assign_feedback_externalserver extends assign_feedback_plugin {
     public function is_feedback_modified(stdClass $grade, stdClass $data) {
         return false;
     }
-
 }
