@@ -36,4 +36,4 @@ $plugin->version = 2025101402;
 $plugin->release = '1.0.0';
 
 // Supported versions.
-$plugin->supported = [404, 500];
+$plugin->supported = [404, 502];
