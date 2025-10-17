@@ -12,6 +12,8 @@ It allows you to get grades and feedbacks for any number of participants from th
 
 Just select any number of submissions, and in the action menu that will show up at the bottom of the screen (on Boost theme), click on "More" and then on "Get grade from external server".
 
+Please note that in order for the external server to write back feedback comments, the "Feedback comments" feedback type has to be enabled for the assignment, as this plugin provides no separate feedback column.
+
 ## License
 
 This plugin is free software: you can redistribute it and/or modify it under the terms of the GNU

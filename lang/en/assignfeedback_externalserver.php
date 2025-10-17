@@ -17,12 +17,13 @@
 /**
  * Language strings for the external server feedback plugin.
  *
- * @package    assignfeedback_external_server
+ * @package    assignfeedback_externalserver
  * @author     Stefan Weber (stefan.weber@think-modular.com)
  * @copyright  2025 think-modular
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+$string['batchlabel'] = 'Get grades from external server';
 $string['enabled'] = 'Enabled';
 $string['enabled_help'] = 'Enables getting grades and feedbacks for any number of participants on the assignment submission overview page, by adding an action there.';
 $string['getgradesfromexternalserver'] = 'Get grades from external server';

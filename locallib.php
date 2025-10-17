@@ -17,7 +17,7 @@
 /**
  * Library file for external server feedback plugin
  *
- * @package    assignfeedback_external_server
+ * @package    assignfeedback_externalserver
  * @author     Stefan Weber (stefan.weber@think-modular.com)
  * @copyright  2025 think-modular
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -26,19 +26,19 @@
 /**
  * Library class for external server feedback plugin
  *
- * @package    assignfeedback_external_server
+ * @package    assignfeedback_externalserver
  * @author     Stefan Weber (stefan.weber@think-modular.com)
  * @copyright  2025 think-modular
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class assign_feedback_external_server extends assign_feedback_plugin {
+class assign_feedback_externalserver extends assign_feedback_plugin {
 
     /**
      * Get the name of the submission plugin
      * @return string
      */
     public function get_name(): string {
-        return get_string('pluginname', 'assignfeedback_external_server');
+        return get_string('pluginname', 'assignfeedback_externalserver');
     }
 
     /**
@@ -59,12 +59,23 @@ class assign_feedback_external_server extends assign_feedback_plugin {
      * @return array
      */
     public function get_grading_batch_operation_details() {
+        global $OUTPUT;
+
+        return [
+            (object) [
+                'key' => 'getgradesfromexternalserver',
+                'label' => get_string('batchlabel', 'assignfeedback_externalserver'),
+                'icon' => $OUTPUT->pix_icon('t/download', ''),
+                'confirmationtitle' => get_string('getgradesfromexternalserver', 'assignfeedback_externalserver'),
+                'confirmationquestion' => get_string('getgradesfromexternalserver_confirm', 'assignfeedback_externalserver'),
+            ],
+        ];
         $action = new stdClass();
         $action->key = 'getgradesfromexternalserver';
-        $action->label = get_string('gradeverb', 'assignsubmission_external_server');
+        $action->label = get_string('gradeverb', 'assignsubmission_externalserver');
         $action->icon = 'i/reload';
-        $action->confirmationtitle = get_string('getgradesfromexternalserver', 'assignfeedback_external_server');
-        $action->confirmationquestion = get_string('getgradesfromexternalserver_confirm', 'assignfeedback_external_server');
+        $action->confirmationtitle = get_string('getgradesfromexternalserver', 'assignfeedback_externalserver');
+        $action->confirmationquestion = get_string('getgradesfromexternalserver_confirm', 'assignfeedback_externalserver');
         return [$action];
     }
 
@@ -72,46 +83,48 @@ class assign_feedback_external_server extends assign_feedback_plugin {
      * Show a batch operations form
      *
      * @param string $action The action chosen from the batch operations menu
-     * @param array $users The list of selected userids
+     * @param array $userids The list of selected userids
      * @return string The page containing the form
      */
-    public function grading_batch_operation($action, $users) {
+    public function grading_batch_operation($action, $userids) {
 
-        if ($action !== 'getgradesfromexternalserver') {
-            return '';
+        // Grade.
+        if ($action == 'getgradesfromexternalserver') {
+            $ext = $this->assignment->get_plugin_by_type('assignsubmission', 'externalserver')->get_externalserver();
+            $result = $ext->grade_submissions($this->assignment, $userids);
         }
 
-        // Do your work (loop $users, call external, update grades, etc.)
-        try {
-            foreach ($users as $userid) {
-                // ... your logic ...
-            }
-            \core\notification::success(get_string('gradesupdated', 'assignfeedback_external_server'));
-        } catch (\Throwable $e) {
-            \core\notification::error($e->getMessage());
+        // Create notification.
+        if (!empty($result->errors)) {
+            $this->assignment->add_message(
+                get_string('someerrorsoccurred', 'assignfeedback_externalserver', ['errors' => implode(', ', $result->errors)]),
+                \core\output\notification::NOTIFY_ERROR
+            );
         }
 
-        // Important: redirect. Returning a string won't navigate.
-        redirect(new \moodle_url('/asdf', [
-            'id' => $this->assignment->get_course_module()->id,
-            'action' => 'grading',
-        ]));
+        // Create notification.
+        $status = $result['status'];
+        $message = $result['message'];
+        \core\notification::add($message, $status);
 
-        return ''; // Not reached.
+        // Reroute back to grading page.
+        $cmid = $this->assignment->get_course_module()->id;
+        $url = new moodle_url('/mod/assign/view.php', [
+            'id' => $cmid,
+            'action' => 'grading'
+        ]);
+        redirect($url);
     }
 
     /**
-     * Show a grading action form
+     * Has the plugin form element been modified in the current submission?
      *
-     * @param string $gradingaction The action chosen from the grading actions menu
-     * @return string The page containing the form
+     * @param stdClass $grade The grade.
+     * @param stdClass $data Form data from the feedback form.
+     * @return boolean - True if the form element has been modified.
      */
-    public function grading_action($gradingaction) {
-
-        echo "<pre>";
-        var_dump($gradingaction);
-        die();
-
+    public function is_feedback_modified(stdClass $grade, stdClass $data) {
+        return false;
     }
 
 }
