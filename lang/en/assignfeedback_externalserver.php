@@ -28,5 +28,6 @@ $string['enabled'] = 'Enabled';
 $string['enabled_help'] = 'Enables getting grades and feedbacks for any number of participants on the assignment submission overview page, by adding an action there.';
 $string['getgradesfromexternalserver'] = 'Get grades from external server';
 $string['getgradesfromexternalserver_confirm'] = 'Are you sure you want to get grades from the external server for the selected users? This will overwrite any existing grades and feedbacks. This action cannot be undone.';
+$string['gradeverb'] = 'Get grade';
 $string['pluginname'] = 'Get grades for submission to external server';
 $string['privacy:metadata'] = 'Get grades for submission to external server plugin does not store any personal data.';

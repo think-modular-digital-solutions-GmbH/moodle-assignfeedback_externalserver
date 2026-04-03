@@ -28,5 +28,6 @@ $string['enabled'] = 'Aktiv';
 $string['enabled_help'] = 'Aktiviert das holen von Bewertungen und Feedbacks für mehrere Teilnehmer/innen auf der Abgabeübersichtsseite, indem dort eine Aktion hinzugefügt wird.';
 $string['getgradesfromexternalserver'] = 'Bewertungen vom externen Server holen';
 $string['getgradesfromexternalserver_confirm'] = 'Möchten Sie wirklich die Bewertungen und Feedbacks für die ausgewählten Abgaben vom externen Server holen? Das überschreibt existierende Bewertungen und Feedbacks und kann nicht rückgängig gemacht werden.';
+$string['gradeverb'] = 'Bewertung holen';
 $string['pluginname'] = 'Bewertungen für Abgaben vom externen Server holen';
 $string['privacy:metadata'] = 'Das Plugin für externe Server-Feedbacks speichert keine personenbezogenen Daten.';

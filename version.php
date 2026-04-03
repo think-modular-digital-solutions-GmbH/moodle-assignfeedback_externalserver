@@ -32,8 +32,8 @@ $plugin->maturity = MATURITY_STABLE;
 $plugin->dependencies = ['assignsubmission_externalserver' => 2025101401];
 
 // Version.
-$plugin->version = 2025101402;
-$plugin->release = '1.0.0';
+$plugin->version = 2026040301;
+$plugin->release = '1.0.1';
 
 // Supported versions.
 $plugin->supported = [404, 502];
