@@ -147,6 +147,7 @@ class assign_feedback_externalserver extends assign_feedback_plugin {
      * @param stdClass|null $grade
      * @param MoodleQuickForm $mform
      * @param stdClass $data
+     * @param int $userid The user ID for whom the form is being generated
      * @return bool true if elements were added to the form
      */
     public function get_form_elements_for_user($grade, MoodleQuickForm $mform, stdClass $data, $userid) {
