@@ -162,6 +162,7 @@ class assign_feedback_externalserver extends assign_feedback_plugin {
             'html',
             $html,
         );
+        return true;
     }
 
     /**
