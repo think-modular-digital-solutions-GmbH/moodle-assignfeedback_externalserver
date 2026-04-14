@@ -137,6 +137,40 @@ class assign_feedback_externalserver extends assign_feedback_plugin {
 
         // Get user and group IDs.
         $userid = $submission->userid;
+        $button = $this->get_grade_button($userid, $submission);
+        return $button;
+    }
+
+    /**
+     * Get form elements for the grading page
+     *
+     * @param stdClass|null $grade
+     * @param MoodleQuickForm $mform
+     * @param stdClass $data
+     * @return bool true if elements were added to the form
+     */
+    public function get_form_elements_for_user($grade, MoodleQuickForm $mform, stdClass $data, $userid) {
+        $cmid = $this->assignment->get_course_module()->id;
+        $submission = $this->assignment->get_user_submission($userid, true);
+        $html = html_writer::div(
+            get_string('pluginname', 'assignfeedback_externalserver'),
+            'mb-2'
+        );
+        $html .= $this->get_grade_button($userid, $submission);
+        $mform->addElement(
+            'html',
+            $html,
+        );
+    }
+
+    /**
+     * Get the grade button for a user
+     *
+     * @param int $userid The user ID
+     * @param stdClass $submission The submission object
+     * @return string The HTML for the grade button
+     */
+    protected function get_grade_button(int $userid, stdClass $submission): string {
         if ($userid == 0) {
             $groupid = $submission->groupid;
             if ($user = $this->get_group_submission_user($submission)) {
@@ -148,12 +182,11 @@ class assign_feedback_externalserver extends assign_feedback_plugin {
         }
 
         // Link to update grade/feedback.
-        $assignmentid = $submission->assignment;
-        $cm = get_coursemodule_from_instance('assign', $assignmentid, 0, false, MUST_EXIST);
+        $cmid = $this->assignment->get_course_module()->id;
         $url = new moodle_url(
             '/mod/assign/submission/externalserver/grade.php',
             [
-                'cmid' => $cm->id,
+                'cmid' => $cmid,
                 'userid' => $userid,
                 'groupid' => $groupid,
             ]
