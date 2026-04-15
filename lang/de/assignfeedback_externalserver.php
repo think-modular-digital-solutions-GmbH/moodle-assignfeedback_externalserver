@@ -25,7 +25,12 @@
 
 $string['batchlabel'] = 'Bewertungen vom externen Server holen';
 $string['enabled'] = 'Aktiv';
-$string['enabled_help'] = 'Aktiviert das holen von Bewertungen und Feedbacks für mehrere Teilnehmer/innen auf der Abgabeübersichtsseite, indem dort eine Aktion hinzugefügt wird.';
+$string['enabled_help'] = 'Aktiviert das Abrufen von Bewertungen und Feedbacks für mehrere Teilnehmer/innen von einem externen Server. Diese Funktion ist unter dem Register "Einreichungen" verfügbar.
+<p><strong>Beachten Sie bitte folgenden Hinweis zur Funktion:</strong></p>
+<ul><li>Im Register "Einreichungen" in der Spalte "Bewertungen für Abgaben vom externen Server holen" kann eine Abgabe durch den externen Server über den Button "Bewertung holen" bewertet werden</li>
+<li>Diese Spalte ist leer, solange keine Abgabe seitens der Studierenden erfolgt ist</li>
+<li>Sollten Studierende trotz fehlender Einreichung durch den externen Server bewertet werden, nützen Sie die Mehrfachbewertung</li>
+<li>Dazu aktivieren Sie die Checkboxen in der linken Spalte der Tabelle und rufen im Footer-Menü die Option "Bewertungen vom externen Server holen" auf</li></ul>';
 $string['getgradesfromexternalserver'] = 'Bewertungen vom externen Server holen';
 $string['getgradesfromexternalserver_confirm'] = 'Möchten Sie wirklich die Bewertungen und Feedbacks für die ausgewählten Abgaben vom externen Server holen? Das überschreibt existierende Bewertungen und Feedbacks und kann nicht rückgängig gemacht werden.';
 $string['gradeverb'] = 'Bewertung holen';

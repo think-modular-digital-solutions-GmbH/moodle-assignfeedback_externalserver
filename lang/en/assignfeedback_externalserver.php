@@ -25,7 +25,12 @@
 
 $string['batchlabel'] = 'Get grades from external server';
 $string['enabled'] = 'Enabled';
-$string['enabled_help'] = 'Enables getting grades and feedbacks for any number of participants on the assignment submission overview page, by adding an action there.';
+$string['enabled_help'] = 'Enables the retrieval of grades and feedback for multiple participants from an external server. This feature is available under the “Submissions” tab.
+<p><strong>Please note the following regarding this feature:</strong></p>
+<ul><li>In the ‘Submissions’ tab, in the “Get grades for submission to external server” column, a submission can be graded via the external server by clicking the “Get grade” button</li>
+<li>This column remains empty until students have submitted their work</li>
+<li>If students need to be graded by the external server despite not having submitted anything, use the multiple grading feature</li>
+<li>To do this, check the boxes in the left column of the table and select the “Get grades from external Server” option in the footer menu</li></ul>';
 $string['getgradesfromexternalserver'] = 'Get grades from external server';
 $string['getgradesfromexternalserver_confirm'] = 'Are you sure you want to get grades from the external server for the selected users? This will overwrite any existing grades and feedbacks. This action cannot be undone.';
 $string['gradeverb'] = 'Get grade';
