@@ -29,7 +29,7 @@ defined('MOODLE_INTERNAL') || die();
 $plugin->requires  = 2024100100;
 $plugin->component = 'assignfeedback_externalserver';
 $plugin->maturity = MATURITY_STABLE;
-$plugin->dependencies = ['assignsubmission_externalserver' => 2026041301];
+$plugin->dependencies = ['assignsubmission_externalserver' => 2026040301];
 
 // Version.
 $plugin->version = 2026041301;
